@@ -5,8 +5,11 @@
 #include "Game.h"
 #include "TextureManager.h"
 #include "GameObject.h"
+#include "TileMap.h"
 
-GameObject *player;
+TileMap* map;
+GameObject* player;
+
 
 SDL_Renderer* Game::renderer = nullptr;
 
@@ -44,7 +47,8 @@ bool Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
         return false;
     }
 
-    player = new GameObject("assets/orc.png", 10, 10);
+    map = new TileMap();
+    player = new GameObject("assets/ball.png", 10, 10);
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     isRunning = true;
@@ -75,6 +79,7 @@ void Game::Render()
     SDL_RenderClear(renderer);
 
     //rendering here
+    map->Draw();
     player->Render();
 
     SDL_RenderPresent(renderer);
@@ -83,6 +88,7 @@ void Game::Render()
 void Game::Clean()
 {
     delete player;
+    delete map;
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();

@@ -7,7 +7,8 @@
 
 #include "Game.h"
 
-class GameObject {
+class GameObject
+{
 public:
     GameObject(const char* spriteSheet, int x, int y);
     ~GameObject();
@@ -22,6 +23,5 @@ private:
     SDL_Texture* objTexture;
     SDL_Rect srcRect, destRect;
 };
-
 
 #endif //SDL_TESTER_GAMEOBJECT_H
